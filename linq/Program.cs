@@ -115,8 +115,8 @@ namespace linq
             };
 
             var millionaireReport = from bank in banks
-                                    join cust in groupByBank on bank.Symbol equals cust.Key
-                                    select new { Bank = bank.Name, Customer = cust};
+                                    join customer in groupByBank on bank.Symbol equals customer.Key
+                                    select new { Bank = bank.Name, Customer = customer};
 
             foreach (var millionaire in millionaireReport)
             {
