@@ -16,16 +16,45 @@ namespace lists
             planetList.Insert(2, "Earth");
             List<string> rockyPlanets = planetList.GetRange(0, 4);
 
-            foreach (string planet in planetList)
-            {
-                Console.WriteLine(planet);
-            }
-
              foreach (string planet in planetList)
             {
-                Console.WriteLine(planet);
+                // Console.WriteLine(planet);
             }
-            
+
+            Dictionary<string, List<string>> mars = new Dictionary<string, List<string>>();
+            mars.Add("Mars", new List<string>(){
+                "craft3", "craft2"
+            });
+
+            Dictionary<string, List<string>> Earth = new Dictionary<string, List<string>>();
+            Earth.Add("Earth", new List<string>(){
+                "craft5", "craft1", "craft9"
+            });
+
+            List<Dictionary<string, List<string>>> spacecraft = new List<Dictionary<string, List<string>>>()
+            {
+                mars, Earth
+            };
+
+            foreach (string planet in planetList)
+            {
+                string visitors = "";
+
+                foreach(var pair in spacecraft)
+                {
+                    foreach(var kvp in pair)
+                    {
+                        if(kvp.Key == planet)
+                        {
+                            visitors = string.Join(", ", kvp.Value);
+                        }
+                    }
+                }
+                if (visitors != "")
+                {
+                    Console.WriteLine($"{planet}: {visitors}");
+                }
+            }
         }
     }
 }
